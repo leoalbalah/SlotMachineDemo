@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 446412496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 801039019}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Spin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &446412496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +374,181 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &801039017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801039018}
+  - component: {fileID: 801039019}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &801039018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801039017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &801039019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801039017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d033df90580914f910ae4411e809d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundCount: 0
+  coins: 100
+  betAmount: 10
+  winRate: 0.2
+  rollers:
+  - slots: 050000000100000002000000070000000400000006000000030000000400000001000000010000000500000003000000
+  - slots: 020000000700000001000000040000000700000003000000050000000600000006000000060000000700000006000000040000000600000007000000
+  - slots: 03000000020000000400000003000000010000000600000007000000010000000100000001000000050000000500000003000000
+  - slots: 060000000400000004000000060000000300000005000000020000000200000001000000070000000700000006000000050000000400000006000000
+  - slots: 0300000007000000010000000200000005000000050000000400000004000000050000000500000003000000010000000200000007000000
+  winCombinations:
+  - slot: 1
+    amount: 4
+    reward: 100
+  - slot: 1
+    amount: 3
+    reward: 75
+  - slot: 1
+    amount: 2
+    reward: 50
+  - slot: 4
+    amount: 4
+    reward: 40
+  - slot: 4
+    amount: 3
+    reward: 20
+  - slot: 4
+    amount: 2
+    reward: 10
+  - slot: 7
+    amount: 4
+    reward: 10
+  - slot: 7
+    amount: 3
+    reward: 5
+  - slot: 7
+    amount: 2
+    reward: 2
+  - slot: 2
+    amount: 4
+    reward: 60
+  - slot: 2
+    amount: 3
+    reward: 30
+  - slot: 2
+    amount: 2
+    reward: 20
+  - slot: 5
+    amount: 4
+    reward: 30
+  - slot: 5
+    amount: 3
+    reward: 15
+  - slot: 5
+    amount: 2
+    reward: 10
+  - slot: 3
+    amount: 4
+    reward: 50
+  - slot: 3
+    amount: 3
+    reward: 20
+  - slot: 3
+    amount: 2
+    reward: 10
+  - slot: 6
+    amount: 4
+    reward: 20
+  - slot: 6
+    amount: 3
+    reward: 10
+  - slot: 6
+    amount: 2
+    reward: 5
+  winPatterns:
+  - coords:
+    - row: 0
+      col: 0
+    - row: 0
+      col: 1
+    - row: 0
+      col: 2
+    - row: 0
+      col: 3
+    - row: 0
+      col: 4
+  - coords:
+    - row: 1
+      col: 0
+    - row: 1
+      col: 1
+    - row: 1
+      col: 2
+    - row: 1
+      col: 3
+    - row: 1
+      col: 4
+  - coords:
+    - row: 2
+      col: 0
+    - row: 2
+      col: 1
+    - row: 2
+      col: 2
+    - row: 2
+      col: 3
+    - row: 2
+      col: 4
+  - coords:
+    - row: 0
+      col: 0
+    - row: 0
+      col: 3
+    - row: 0
+      col: 4
+    - row: 2
+      col: 1
+    - row: 2
+      col: 3
+  - coords:
+    - row: 0
+      col: 0
+    - row: 0
+      col: 4
+    - row: 1
+      col: 1
+    - row: 1
+      col: 3
+    - row: 2
+      col: 2
+  debugMode: 1
 --- !u!1 &1492916953
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +629,7 @@ GameObject:
   - component: {fileID: 1844171630}
   - component: {fileID: 1844171629}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ScreenCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,7 +711,7 @@ RectTransform:
   - {fileID: 2005884708}
   - {fileID: 446412494}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
