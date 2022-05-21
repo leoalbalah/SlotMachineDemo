@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,10 +12,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int betAmount = 20;
 
     [Header("Data")] [SerializeField] private Roller[] rollers;
+    [SerializeField]private ReelsManager _reelsManager;
     [SerializeField] private WinCombination[] winCombinations;
     [SerializeField] private WinPattern[] winPatterns;
 
     [Header("Debug")] [SerializeField] private bool debugMode;
+
 
     #endregion
 
@@ -47,6 +50,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(winCombinations.Count);
 
         // Display Spin
+        
+        _reelsManager.Spin();
+        
         // Display Result Phase
     }
 
