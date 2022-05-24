@@ -185,6 +185,9 @@ MonoBehaviour:
   - {fileID: 1393909361}
   - {fileID: 1727571585}
   - {fileID: 1512835709}
+  minSpeed: 20
+  maxSpeed: 25
+  mustStop: 0
 --- !u!1 &446412493
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ public class NewReelsManager : MonoBehaviour
     [SerializeField] private NewGameManager gameManager;
 
     public NewReel[] reels;
+    public int minSpeed;
+    public int maxSpeed;
 
     public bool mustStop;
     private ArrayList _results = new ArrayList();
@@ -40,9 +42,16 @@ public class NewReelsManager : MonoBehaviour
 
     public void Spin()
     {
+        StartCoroutine(StartSpinEnum());
+    }
+
+    private IEnumerator StartSpinEnum()
+    {
         for (var i = 0; i < reels.Length; i++)
         {
             reels[i].isSpinning = true;
+            reels[i].speed = Random.Range(minSpeed, maxSpeed);
+            yield return new WaitForSeconds(.5f);
         }
     }
 
