@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figureId: 060000000400000005000000060000000700000007000000010000000200000002000000050000000300000006000000040000000400000006000000
-  yPos: 000000000e0100001c0200002a03000038040000460500005406000062070000700800007e0900008c0a00009a0b0000a80c0000b60d0000c40e0000
+  yPos: 0e01000000000000f2feffffe4fdffffd6fcffffc8fbffffbafaffffacf9ffff9ef8ffff90f7ffff82f6ffff74f5ffff66f4ffff66f4ffff66f4ffff
 --- !u!1 &4384183581621912201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,8 +1181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpinning: 0
-  reseter: {fileID: 4384183582404396527}
+  reseter: {fileID: 0}
   reelObject: {fileID: 4384183581591694537}
+  stopOn: -1
 --- !u!1 &4384183582428017030
 GameObject:
   m_ObjectHideFlags: 0

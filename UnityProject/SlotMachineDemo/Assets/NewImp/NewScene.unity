@@ -468,7 +468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4336}
+  m_AnchoredPosition: {x: 0, y: -4683}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &801039017
@@ -930,18 +930,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
-    - target: {fileID: 1303890093, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -5324
+    - target: {fileID: 714808970105229840, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
+      propertyPath: speed
+      value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 714808970105229840, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
-      propertyPath: Figure
-      value: 
-      objectReference: {fileID: 1716422969144000711, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
-    - target: {fileID: 714808970105229840, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
-      propertyPath: figure
-      value: 
-      objectReference: {fileID: 2181632676113583071, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
     - target: {fileID: 714808970105229840, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
       propertyPath: reseter
       value: 
@@ -1043,22 +1035,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
-    - target: {fileID: 1486432944898955326, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -5324
-      objectReference: {fileID: 0}
     - target: {fileID: 2366525831636225784, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
       propertyPath: m_Name
       value: NewReel 5
       objectReference: {fileID: 0}
     - target: {fileID: 2366525831636225790, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
-      propertyPath: Figure
-      value: 
-      objectReference: {fileID: 1716422969144000711, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
-    - target: {fileID: 2366525831636225790, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
-      propertyPath: figure
-      value: 
-      objectReference: {fileID: 2181632676113583071, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2366525831636225790, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
       propertyPath: reseter
       value: 
@@ -1161,13 +1145,9 @@ PrefabInstance:
       value: NewReel 4
       objectReference: {fileID: 0}
     - target: {fileID: 4384183582404396526, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
-      propertyPath: Figure
-      value: 
-      objectReference: {fileID: 1716422969144000711, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
-    - target: {fileID: 4384183582404396526, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
-      propertyPath: figure
-      value: 
-      objectReference: {fileID: 2181632676113583071, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4384183582404396526, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
       propertyPath: reseter
       value: 
@@ -1256,10 +1236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6469544286545491175, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -5324
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
 --- !u!1001 &6711763338185466199
@@ -1270,13 +1246,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
     - target: {fileID: 6711763339008917286, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
-      propertyPath: Figure
-      value: 
-      objectReference: {fileID: 1716422969144000711, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
-    - target: {fileID: 6711763339008917286, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
-      propertyPath: figure
-      value: 
-      objectReference: {fileID: 2181632676113583071, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6711763339008917286, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
       propertyPath: reseter
       value: 
@@ -1369,10 +1341,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewReel 3
       objectReference: {fileID: 0}
-    - target: {fileID: 9197245541440109360, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -5324
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
 --- !u!1001 &7165255605154416216
@@ -1382,10 +1350,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
-    - target: {fileID: 1565078085000513077, guid: 484db731034c0334a92c06dd50b46409, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -5324
-      objectReference: {fileID: 0}
     - target: {fileID: 1677592534930956946, guid: 484db731034c0334a92c06dd50b46409, type: 3}
       propertyPath: m_Name
       value: NewReel 2
@@ -1475,13 +1439,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1677592534930956956, guid: 484db731034c0334a92c06dd50b46409, type: 3}
-      propertyPath: Figure
-      value: 
-      objectReference: {fileID: 1716422969144000711, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
-    - target: {fileID: 1677592534930956956, guid: 484db731034c0334a92c06dd50b46409, type: 3}
-      propertyPath: figure
-      value: 
-      objectReference: {fileID: 2181632676113583071, guid: b5b1a79792d91ac4a93dcad6784d23d4, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1677592534930956956, guid: 484db731034c0334a92c06dd50b46409, type: 3}
       propertyPath: reseter
       value: 

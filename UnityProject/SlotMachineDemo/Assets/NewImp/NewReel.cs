@@ -7,6 +7,9 @@ public class NewReel : MonoBehaviour
     [SerializeField] private Transform reseter;
     [SerializeField] private GameObject reelObject;
     private GameObject _supportReelObject;
+    public int stopOn = -1;
+    public float speed = 10;
+
 
     private void Start()
     {
@@ -19,13 +22,53 @@ public class NewReel : MonoBehaviour
 
     private void Update()
     {
-        if (isSpinning)
+        var mustStop = stopOn != -1;
+        if (isSpinning & !mustStop)
         {
             Spin();
         }
+
+        if (isSpinning & mustStop)
+        {
+            Stop();
+        }
     }
 
-    public void Spin()
+    private void Stop()
+    {
+        var stopPos = reelObject.GetComponent<NewReelObject>().yPos[stopOn] + 380;
+
+        if (reelObject.transform.position.y != stopPos)
+        {
+            _supportReelObject.transform.SetParent(reelObject.transform);
+
+            var position = reelObject.transform.position;
+
+            if (position.y > stopPos)
+                position = Vector3.MoveTowards(
+                    position,
+                    new Vector3(position.x, stopPos, position.z),
+                    speed * 2);
+            else
+                position = Vector3.MoveTowards(
+                    position,
+                    new Vector3(position.x, position.y - 160, position.z),
+                    speed * 2);
+
+            reelObject.transform.position = position;
+        }
+        else
+        {
+            Debug.Log("stopping");
+            isSpinning = false;
+            stopOn = -1;
+            _supportReelObject.transform.SetParent(reelObject.transform.parent);
+        }
+
+        Reset();
+    }
+
+    private void Spin()
     {
         MoveDown();
 
@@ -34,6 +77,8 @@ public class NewReel : MonoBehaviour
 
     private void Reset()
     {
+        _supportReelObject.transform.SetParent(reelObject.transform.parent);
+
         if (reelObject.transform.position.y <= reseter.position.y)
             reelObject.transform.position = _supportReelObject.transform.position + new Vector3(0,
                 _supportReelObject.GetComponent<NewReelObject>().figureId.Length * 270, 0);
@@ -44,24 +89,7 @@ public class NewReel : MonoBehaviour
 
     private void MoveDown()
     {
-        var position = reelObject.transform.position;
-
-        position = Vector3.MoveTowards(
-            position,
-            new Vector3(position.x, position.y - 160,
-                position.z),
-            5);
-
-        reelObject.transform.position = position;
-
-        var supportPosition = _supportReelObject.transform.position;
-
-        supportPosition = Vector3.MoveTowards(
-            supportPosition,
-            new Vector3(supportPosition.x, supportPosition.y - 160,
-                supportPosition.z),
-            5);
-
-        _supportReelObject.transform.position = supportPosition;
+        reelObject.transform.Translate(new Vector3(0, -160, 0) * (speed * Time.deltaTime));
+        _supportReelObject.transform.Translate(new Vector3(0, -160, 0) * (speed * Time.deltaTime));
     }
 }

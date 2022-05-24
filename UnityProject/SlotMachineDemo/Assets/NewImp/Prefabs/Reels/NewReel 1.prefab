@@ -129,6 +129,7 @@ MonoBehaviour:
   isSpinning: 0
   reseter: {fileID: 0}
   reelObject: {fileID: 714808971190021630}
+  stopOn: -1
 --- !u!1 &714808970241194055
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figureId: 030000000500000001000000010000000400000003000000060000000400000007000000020000000100000005000000
-  yPos: 000000000e0100001c0200002a03000038040000460500005406000062070000700800007e0900008c0a00009a0b0000
+  yPos: 0e01000000000000f2feffffe4fdffffd6fcffffc8fbffffbafaffffacf9ffff9ef8ffff90f7ffff82f6ffff74f5ffff
 --- !u!1 &714808971246730316
 GameObject:
   m_ObjectHideFlags: 0
