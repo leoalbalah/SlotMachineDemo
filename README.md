@@ -2,6 +2,8 @@
 
 Unity Slot Machine Demo
 
+[Github](https://github.com/leoalbalah/SlotMachineDemo)ø
+
 ## Features
 
 * Animated Spinning
