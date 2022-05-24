@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +7,17 @@ using Random = UnityEngine.Random;
 
 public class NewGameManager : MonoBehaviour
 {
+    #region Properties
+
     [Header("Settings")] [SerializeField] private int roundCount;
     [SerializeField] private int credits = 100;
-    [SerializeField] private SlotMatch[] slotMatches;
     [SerializeField] private int betAmount = 20;
-    [Header("Data")] [SerializeField] private NewReelsManager reelsManager;
+    [Range(1, 3)] [SerializeField] private int multiplier;
+
+    [Header("Data & References")] [SerializeField]
+    private SlotMatch[] slotMatches;
+
+    [SerializeField] private NewReelsManager reelsManager;
     [SerializeField] private GameObject canvas;
     [SerializeField] private WinCombination[] winCombinations;
     [SerializeField] private WinPattern[] winPatterns;
@@ -18,13 +25,17 @@ public class NewGameManager : MonoBehaviour
     [SerializeField] private RewardPanel rewardPanel;
     [SerializeField] private TextMeshProUGUI creditsUI;
     [SerializeField] private TextMeshProUGUI betUI;
-    [Range(1, 3)] [SerializeField] private int multiplier;
     private object _topComb;
     private int[,] _resMatrix;
     private bool _debugMode = true;
 
+    #endregion
+
+    #region Bets & Credits
+
     private void Start()
     {
+        // Sets UI values
         creditsUI.SetText(credits.ToString());
         multiplier = 1;
         betAmount = 20;
@@ -47,33 +58,43 @@ public class NewGameManager : MonoBehaviour
         betUI.SetText(betAmount.ToString());
     }
 
+    private void PayFee()
+    {
+        credits -= betAmount;
+        creditsUI.SetText(credits.ToString());
+    }
+
+    private void Earn()
+    {
+        credits += multiplier * ((WinPatternCombination)_topComb).WinCombination.reward;
+        creditsUI.SetText(credits.ToString());
+    }
+
+    #endregion
+
+
     public void Spin()
     {
+        // Ensure That the credits are enough for the spin
         if (betAmount > credits)
             return;
 
         spinBtn.interactable = false;
 
-        roundCount++;
         PayFee();
 
         var roll = new ArrayList();
         Roll(roll);
 
-        // Debug
-        var tRoll = "";
-        foreach (var r in roll)
-        {
-            tRoll += r + " ";
-        }
-
-        Debug.Log("Roll " + tRoll);
-
-
         var winCombs = CheckWinCombinations(roll);
 
+        // Debug
+        roundCount++;
+        var tRoll = roll.Cast<object>().Aggregate("", (current, r) => current + (r + " "));
+        Debug.Log("Roll " + tRoll);
         Debug.Log("Winning Combinations: " + winCombs.Count);
 
+        // Gets the more profitable combination.
         _topComb = winCombs[0];
         foreach (var winComb in winCombs)
         {
@@ -82,6 +103,7 @@ public class NewGameManager : MonoBehaviour
                 _topComb = winComb;
         }
 
+        // Starts the spinning and after a small delay the stop reels functions.
         reelsManager.Spin();
         LeanTween.delayedCall(Random.Range(2, 4), () => { reelsManager.Stop(roll); });
 
@@ -173,6 +195,10 @@ public class NewGameManager : MonoBehaviour
         return resMatrix;
     }
 
+    /// <summary>  
+    /// Generates one random value per reel.
+    /// <param name="roll">reference ArrayList(int) to store the random roll result.</param>.
+    /// </summary>
     private void Roll(ArrayList roll)
     {
         foreach (var roller in reelsManager.reels)
@@ -180,18 +206,6 @@ public class NewGameManager : MonoBehaviour
             var rollerRoll = Random.Range(0, roller.reelObject.GetComponent<NewReelObject>().figureId.Length);
             roll.Add(rollerRoll);
         }
-    }
-
-    private void PayFee()
-    {
-        credits -= betAmount;
-        creditsUI.SetText(credits.ToString());
-    }
-
-    private void Earn()
-    {
-        credits += multiplier * ((WinPatternCombination)_topComb).WinCombination.reward;
-        creditsUI.SetText(credits.ToString());
     }
 
     public void ShowResults()

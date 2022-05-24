@@ -1,22 +1,28 @@
 using UnityEngine;
 
+/// <summary>  
+/// Implementation of the slot machine reel.
+/// </summary>
 public class NewReel : MonoBehaviour
 {
-    public bool isSpinning = false;
+    #region Properties
 
     [SerializeField] private Transform reseter;
-    public GameObject reelObject;
+    [SerializeField] public GameObject reelObject;
+
+    public bool isSpinning = false;
+
     private GameObject _supportReelObject;
     public int stopOn = -1;
     public float speed = 10;
 
+    #endregion
 
     private void Start()
     {
+        // Instantiate a second reel for infinite loop.
         _supportReelObject = Instantiate(reelObject, transform);
-
         var separation = reelObject.GetComponent<NewReelObject>().figureId.Length * 270;
-
         _supportReelObject.transform.position = reelObject.transform.position + new Vector3(0, separation, 0);
     }
 
@@ -34,6 +40,9 @@ public class NewReel : MonoBehaviour
         }
     }
 
+    /// <summary>  
+    /// Handles the reel stopping.
+    /// </summary>
     private void Stop()
     {
         var stopPos = reelObject.GetComponent<NewReelObject>().yPos[stopOn] + 380;
@@ -67,13 +76,18 @@ public class NewReel : MonoBehaviour
         Reset();
     }
 
+    /// <summary>  
+    /// Handles the reel spinning.
+    /// </summary>
     private void Spin()
     {
         MoveDown();
-
         Reset();
     }
 
+    /// <summary>  
+    /// Repositions the reels when below a certain point to ensure a smooth infinite loop.
+    /// </summary>
     private void Reset()
     {
         _supportReelObject.transform.SetParent(reelObject.transform.parent);
