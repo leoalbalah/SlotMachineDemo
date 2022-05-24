@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class NewGameManager : MonoBehaviour
 {
@@ -15,10 +18,37 @@ public class NewGameManager : MonoBehaviour
     [SerializeField] private WinPattern[] winPatterns;
     [SerializeField] private Button spinBtn;
     [SerializeField] private RewardPanel rewardPanel;
+    [SerializeField] private TextMeshProUGUI creditsUI;
+    [SerializeField] private TextMeshProUGUI betUI;
     [Range(1, 3)] [SerializeField] private int multiplier;
     private object _topComb;
     private int[,] _resMatrix;
     private bool _debugMode = true;
+
+    private void Start()
+    {
+        creditsUI.SetText(credits.ToString());
+        multiplier = 1;
+        betAmount = 20;
+        betUI.SetText(betAmount.ToString());
+
+    }
+
+    public void IncreaseBet()
+    {
+        if (multiplier >= 3) return;
+        multiplier++;
+        betAmount = multiplier * 20;
+        betUI.SetText(betAmount.ToString());
+    }
+    
+    public void DecreaseBet()
+    {
+        if (multiplier <= 1) return;
+        multiplier--;
+        betAmount = multiplier * 20;
+        betUI.SetText(betAmount.ToString());
+    }
 
     public void Spin()
     {
@@ -159,11 +189,13 @@ public class NewGameManager : MonoBehaviour
     private void PayFee()
     {
         credits -= betAmount;
+        creditsUI.SetText(credits.ToString());
     }
 
     private void Earn()
     {
         credits += multiplier * ((WinPatternCombination)_topComb).WinCombination.reward;
+        creditsUI.SetText(credits.ToString());
     }
 
     public void ShowResults()
