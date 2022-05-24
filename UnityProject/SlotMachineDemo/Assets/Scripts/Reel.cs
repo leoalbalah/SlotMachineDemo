@@ -2,14 +2,21 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>  
+/// Handles Reel properties and methods.
+/// </summary>
 public class Reel : MonoBehaviour
 {
     public int[] slots;
-    public Transform reseter;
-    private ReelsManager _manager;
     public bool isSpinning;
+    public float speedRange;
+    public readonly ArrayList Instances = new ArrayList();
 
-    private ArrayList _instances = new ArrayList();
+    [SerializeField] private Transform resetTransform;
+
+    public int stopOn = -1;
+    private ReelsManager _manager;
+    private bool mustStop = false;
 
     private void Awake()
     {
@@ -22,40 +29,109 @@ public class Reel : MonoBehaviour
         {
             var temp = Instantiate(_manager.slotPrefab, transform);
 
-            temp.GetComponent<Slot>().slotDef = slots[i] - 1;
-            temp.GetComponent<Slot>().graphics.sprite = _manager.SlotMatches[slots[i] - 1].graphics;
+            temp.GetComponent<Slot>().graphics.sprite = _manager.slotMatches[slots[i] - 1].graphics;
 
-            temp.transform.position += new Vector3(0, (i * 140), 0);
-            _instances.Add(temp);
+            temp.transform.position += new Vector3(0, (i * 260), 0);
+            Instances.Add(temp);
         }
     }
 
     private void Update()
     {
-        if (isSpinning)
-            Spin(1);
+        Spin();
     }
 
-    public void Spin(int endPos)
+    private void Spin()
     {
-        for (int i = _instances.Count - 1; i > -1; i--)
+        const int endPos = 540;
+
+        mustStop = stopOn != -1;
+
+        if (isSpinning)
         {
-            if (((GameObject)_instances[i]).transform.position.y <= reseter.position.y)
+            if (mustStop)
             {
-                var upperPos = 0f;
-                foreach (var instance in _instances)
+                for (var i = Instances.Count - 1; i > -1; i--)
                 {
-                    if (((GameObject)instance).transform.position.y > upperPos)
-                        upperPos = ((GameObject)instance).transform.position.y;
+                    if (i == stopOn)
+                    {
+                        if (Math.Abs(endPos - ((GameObject)Instances[i]).transform.position.y) < 1)
+                        {
+                            isSpinning = false;
+                            stopOn = -1;
+                        }
+
+                        if (((GameObject)Instances[i]).transform.position.y < stopOn)
+                        {
+                            if (((GameObject)Instances[i]).transform.position.y <= resetTransform.position.y)
+                            {
+                                var upperPos = 0f;
+                                foreach (var instance in Instances)
+                                {
+                                    if (((GameObject)instance).transform.position.y > upperPos)
+                                        upperPos = ((GameObject)instance).transform.position.y;
+                                }
+
+                                ((GameObject)Instances[i]).transform.position += new Vector3(0, upperPos + 320, 0);
+                            }
+
+                            ((GameObject)Instances[i]).transform.position = Vector3.MoveTowards(
+                                ((GameObject)Instances[i]).transform.position,
+                                resetTransform.position,
+                                speedRange);
+                        }
+                        else if (((GameObject)Instances[i]).transform.position.y > stopOn)
+                        {
+                            ((GameObject)Instances[i]).transform.position = Vector3.MoveTowards(
+                                ((GameObject)Instances[i]).transform.position,
+                                new Vector3(((GameObject)Instances[i]).transform.position.x, endPos,
+                                    ((GameObject)Instances[i]).transform.position.z),
+                                speedRange);
+                        }
+                    }
+                    else
+                    {
+                        if (((GameObject)Instances[i]).transform.position.y <= resetTransform.position.y)
+                        {
+                            var upperPos = 0f;
+                            foreach (var instance in Instances)
+                            {
+                                if (((GameObject)instance).transform.position.y > upperPos)
+                                    upperPos = ((GameObject)instance).transform.position.y;
+                            }
+
+                            ((GameObject)Instances[i]).transform.position += new Vector3(0, upperPos + 320, 0);
+                        }
+
+                        ((GameObject)Instances[i]).transform.position = Vector3.MoveTowards(
+                            ((GameObject)Instances[i]).transform.position,
+                            resetTransform.position,
+                            speedRange);
+                    }
                 }
-
-                ((GameObject)_instances[i]).transform.position += new Vector3(0, upperPos + 100, 0);
             }
+            else
+            {
+                for (var i = Instances.Count - 1; i > -1; i--)
+                {
+                    if (((GameObject)Instances[i]).transform.position.y <= resetTransform.position.y)
+                    {
+                        var upperPos = 0f;
+                        foreach (var instance in Instances)
+                        {
+                            if (((GameObject)instance).transform.position.y > upperPos)
+                                upperPos = ((GameObject)instance).transform.position.y;
+                        }
 
-            ((GameObject)_instances[i]).transform.position = Vector3.MoveTowards(
-                ((GameObject)_instances[i]).transform.position,
-                ((GameObject)_instances[i]).transform.position + Vector3.down * 100,
-                3);
+                        ((GameObject)Instances[i]).transform.position += new Vector3(0, upperPos + 320, 0);
+                    }
+
+                    ((GameObject)Instances[i]).transform.position = Vector3.MoveTowards(
+                        ((GameObject)Instances[i]).transform.position,
+                        resetTransform.position,
+                        speedRange);
+                }
+            }
         }
     }
 }

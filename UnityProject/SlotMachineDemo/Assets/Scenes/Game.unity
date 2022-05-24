@@ -131,9 +131,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
     - target: {fileID: 351817206, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
+      propertyPath: highlight1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 351817206, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
+      propertyPath: highlight2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 351817206, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
+      propertyPath: highlight3
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 351817206, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
       propertyPath: isSpinning
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 351817206, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
+      propertyPath: resetTransform
+      value: 
+      objectReference: {fileID: 1573144316}
     - target: {fileID: 351817206, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
       propertyPath: slots.Array.size
       value: 12
@@ -273,6 +289,10 @@ PrefabInstance:
     - target: {fileID: 4043109810443211101, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
       propertyPath: m_Name
       value: Reel1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7624346871827584676, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
@@ -499,10 +519,10 @@ RectTransform:
   m_Father: {fileID: 1844171632}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -160}
+  m_SizeDelta: {x: 0, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408065501
 MonoBehaviour:
@@ -516,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35964cdf82cf7743870fcc854537e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlotMatches:
+  slotMatches:
   - id: 1
     graphics: {fileID: 21300000, guid: 309c27d87318d194fba6c934d6997144, type: 3}
   - id: 2
@@ -538,6 +558,8 @@ MonoBehaviour:
   - {fileID: 970130413}
   - {fileID: 1933120005}
   - {fileID: 1593799129}
+  minSpeed: 30
+  maxSpeed: 40
 --- !u!1 &446412493
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 801039018}
   - component: {fileID: 801039019}
+  - component: {fileID: 801039020}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -834,15 +857,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundCount: 0
-  coins: 100
+  credits: 100
   betAmount: 10
-  rollers:
-  - slots: 050000000100000002000000070000000400000006000000030000000400000001000000010000000500000003000000
-  - slots: 020000000700000001000000040000000700000003000000050000000600000006000000060000000700000006000000040000000600000007000000
-  - slots: 03000000020000000400000003000000010000000600000007000000010000000100000001000000050000000500000003000000
-  - slots: 060000000400000004000000060000000300000005000000020000000200000001000000070000000700000006000000050000000400000006000000
-  - slots: 0300000007000000010000000200000005000000050000000400000004000000050000000500000003000000010000000200000007000000
-  _reelsManager: {fileID: 408065501}
+  reelsManager: {fileID: 408065501}
+  canvas: {fileID: 1844171628}
   winCombinations:
   - slot: 1
     amount: 4
@@ -919,6 +937,7 @@ MonoBehaviour:
       col: 3
     - row: 0
       col: 4
+    highLights: {fileID: 2251751502702379406, guid: 4209ed17c18a62546a8ca82b3a9fa243, type: 3}
   - coords:
     - row: 1
       col: 0
@@ -930,6 +949,7 @@ MonoBehaviour:
       col: 3
     - row: 1
       col: 4
+    highLights: {fileID: 1015832443540037092, guid: c08460f59c8d70142926f93591b59ce0, type: 3}
   - coords:
     - row: 2
       col: 0
@@ -941,17 +961,19 @@ MonoBehaviour:
       col: 3
     - row: 2
       col: 4
+    highLights: {fileID: 7461813790058333673, guid: a562faa26175a1e4f8db69f3e2d2ae5f, type: 3}
   - coords:
     - row: 0
       col: 0
     - row: 0
-      col: 3
+      col: 2
     - row: 0
       col: 4
     - row: 2
       col: 1
     - row: 2
       col: 3
+    highLights: {fileID: 5889492981727847017, guid: 193cfaf87363f5c429da54b9825c2a5b, type: 3}
   - coords:
     - row: 0
       col: 0
@@ -963,7 +985,106 @@ MonoBehaviour:
       col: 3
     - row: 2
       col: 2
+    highLights: {fileID: 904399486575478641, guid: a3c772a49aa0bbc4a9146a4b99fd139e, type: 3}
+  spinBtn: {fileID: 446412495}
+  ambience: {fileID: 8300000, guid: 2277fd58964c8c64cb702774969592c2, type: 3}
   debugMode: 1
+--- !u!82 &801039020
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801039017}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2277fd58964c8c64cb702774969592c2, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &833418200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1382,6 +1503,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1573144316 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8617844188951101672, guid: 267be3973a6a3aa4885d9e4dad0789a2, type: 3}
+  m_PrefabInstance: {fileID: 351817203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1593799127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1612,7 +1738,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
