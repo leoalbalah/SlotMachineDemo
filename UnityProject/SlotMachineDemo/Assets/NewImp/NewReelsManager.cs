@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class NewReelsManager : MonoBehaviour
 {
+    [SerializeField] private NewGameManager gameManager;
+
     public NewReel[] reels;
-    
+
     public void Spin()
     {
         for (var i = 0; i < reels.Length; i++)
@@ -19,5 +21,7 @@ public class NewReelsManager : MonoBehaviour
         {
             reels[i].stopOn = (int)results[i];
         }
+
+        gameManager.ShowResults();
     }
 }

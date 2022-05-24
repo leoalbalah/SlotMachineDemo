@@ -5,7 +5,7 @@ public class NewReel : MonoBehaviour
     public bool isSpinning = false;
 
     [SerializeField] private Transform reseter;
-    [SerializeField] private GameObject reelObject;
+    public GameObject reelObject;
     private GameObject _supportReelObject;
     public int stopOn = -1;
     public float speed = 10;
@@ -59,7 +59,6 @@ public class NewReel : MonoBehaviour
         }
         else
         {
-            Debug.Log("stopping");
             isSpinning = false;
             stopOn = -1;
             _supportReelObject.transform.SetParent(reelObject.transform.parent);

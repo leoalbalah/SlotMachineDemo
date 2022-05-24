@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56dbab999256e3a4cbc0befbc0b09191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 801039021}
   reels:
   - {fileID: 1871300888}
   - {fileID: 8374473777160070348}
@@ -612,7 +613,137 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b6ee55e70d6de4083ef7a290767285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roundCount: 0
+  credits: 100
+  betAmount: 20
   reelsManager: {fileID: 408065501}
+  canvas: {fileID: 1844171628}
+  winCombinations:
+  - slot: 1
+    amount: 4
+    reward: 100
+  - slot: 1
+    amount: 3
+    reward: 75
+  - slot: 1
+    amount: 2
+    reward: 50
+  - slot: 4
+    amount: 4
+    reward: 40
+  - slot: 4
+    amount: 3
+    reward: 20
+  - slot: 4
+    amount: 2
+    reward: 10
+  - slot: 7
+    amount: 4
+    reward: 10
+  - slot: 7
+    amount: 3
+    reward: 5
+  - slot: 7
+    amount: 2
+    reward: 2
+  - slot: 2
+    amount: 4
+    reward: 60
+  - slot: 2
+    amount: 3
+    reward: 30
+  - slot: 2
+    amount: 2
+    reward: 20
+  - slot: 5
+    amount: 4
+    reward: 30
+  - slot: 5
+    amount: 3
+    reward: 15
+  - slot: 5
+    amount: 2
+    reward: 10
+  - slot: 3
+    amount: 4
+    reward: 50
+  - slot: 3
+    amount: 3
+    reward: 20
+  - slot: 3
+    amount: 2
+    reward: 10
+  - slot: 6
+    amount: 4
+    reward: 20
+  - slot: 6
+    amount: 3
+    reward: 10
+  - slot: 6
+    amount: 2
+    reward: 5
+  winPatterns:
+  - coords:
+    - row: 0
+      col: 0
+    - row: 0
+      col: 1
+    - row: 0
+      col: 2
+    - row: 0
+      col: 3
+    - row: 0
+      col: 4
+    highLights: {fileID: 2251751502702379406, guid: 4209ed17c18a62546a8ca82b3a9fa243, type: 3}
+  - coords:
+    - row: 1
+      col: 0
+    - row: 1
+      col: 1
+    - row: 1
+      col: 2
+    - row: 1
+      col: 3
+    - row: 1
+      col: 4
+    highLights: {fileID: 1015832443540037092, guid: c08460f59c8d70142926f93591b59ce0, type: 3}
+  - coords:
+    - row: 2
+      col: 0
+    - row: 2
+      col: 1
+    - row: 2
+      col: 2
+    - row: 2
+      col: 3
+    - row: 2
+      col: 4
+    highLights: {fileID: 7461813790058333673, guid: a562faa26175a1e4f8db69f3e2d2ae5f, type: 3}
+  - coords:
+    - row: 0
+      col: 0
+    - row: 0
+      col: 2
+    - row: 0
+      col: 4
+    - row: 2
+      col: 1
+    - row: 2
+      col: 3
+    highLights: {fileID: 5889492981727847017, guid: 193cfaf87363f5c429da54b9825c2a5b, type: 3}
+  - coords:
+    - row: 0
+      col: 0
+    - row: 0
+      col: 4
+    - row: 1
+      col: 1
+    - row: 1
+      col: 3
+    - row: 2
+      col: 2
+    highLights: {fileID: 904399486575478641, guid: a3c772a49aa0bbc4a9146a4b99fd139e, type: 3}
+  spinBtn: {fileID: 446412495}
 --- !u!224 &1393909360 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6711763339008917287, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
@@ -931,10 +1062,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
     - target: {fileID: 714808970105229840, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 714808970105229840, guid: 3e4ab91e3d3ea6242870a39597561e96, type: 3}
       propertyPath: reseter
       value: 
       objectReference: {fileID: 682453808}
@@ -1040,10 +1167,6 @@ PrefabInstance:
       value: NewReel 5
       objectReference: {fileID: 0}
     - target: {fileID: 2366525831636225790, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2366525831636225790, guid: d80da3b7a46f5304bb07bb1fa06c247e, type: 3}
       propertyPath: reseter
       value: 
       objectReference: {fileID: 682453808}
@@ -1145,10 +1268,6 @@ PrefabInstance:
       value: NewReel 4
       objectReference: {fileID: 0}
     - target: {fileID: 4384183582404396526, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4384183582404396526, guid: 751403bae8353434b8b590bf0a59d2f3, type: 3}
       propertyPath: reseter
       value: 
       objectReference: {fileID: 682453808}
@@ -1245,10 +1364,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 408065500}
     m_Modifications:
-    - target: {fileID: 6711763339008917286, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6711763339008917286, guid: 3637b97ef89b9a842ad4a7ae0345d947, type: 3}
       propertyPath: reseter
       value: 
@@ -1437,10 +1552,6 @@ PrefabInstance:
     - target: {fileID: 1677592534930956947, guid: 484db731034c0334a92c06dd50b46409, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1677592534930956956, guid: 484db731034c0334a92c06dd50b46409, type: 3}
-      propertyPath: speed
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1677592534930956956, guid: 484db731034c0334a92c06dd50b46409, type: 3}
       propertyPath: reseter

@@ -586,6 +586,7 @@ MonoBehaviour:
   reseter: {fileID: 0}
   reelObject: {fileID: 6711763339068108775}
   stopOn: -1
+  speed: 20
 --- !u!1 &6711763339068108775
 GameObject:
   m_ObjectHideFlags: 0
