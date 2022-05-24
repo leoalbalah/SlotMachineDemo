@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -31,7 +29,6 @@ public class NewGameManager : MonoBehaviour
         multiplier = 1;
         betAmount = 20;
         betUI.SetText(betAmount.ToString());
-
     }
 
     public void IncreaseBet()
@@ -41,7 +38,7 @@ public class NewGameManager : MonoBehaviour
         betAmount = multiplier * 20;
         betUI.SetText(betAmount.ToString());
     }
-    
+
     public void DecreaseBet()
     {
         if (multiplier <= 1) return;
@@ -63,16 +60,15 @@ public class NewGameManager : MonoBehaviour
         var roll = new ArrayList();
         Roll(roll);
 
-        if (_debugMode)
+        // Debug
+        var tRoll = "";
+        foreach (var r in roll)
         {
-            var tRoll = "";
-            foreach (var r in roll)
-            {
-                tRoll += r + " ";
-            }
-
-            Debug.Log("Roll " + tRoll);
+            tRoll += r + " ";
         }
+
+        Debug.Log("Roll " + tRoll);
+
 
         var winCombs = CheckWinCombinations(roll);
 
