@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,15 @@ public class NewGameManager : MonoBehaviour
 {
     [Header("Settings")] [SerializeField] private int roundCount;
     [SerializeField] private int credits = 100;
+    [SerializeField] private SlotMatch[] slotMatches;
     [SerializeField] private int betAmount = 20;
     [Header("Data")] [SerializeField] private NewReelsManager reelsManager;
     [SerializeField] private GameObject canvas;
     [SerializeField] private WinCombination[] winCombinations;
     [SerializeField] private WinPattern[] winPatterns;
     [SerializeField] private Button spinBtn;
+    [SerializeField] private RewardPanel rewardPanel;
+    [Range(1, 3)] [SerializeField] private int multiplier;
     private object _topComb;
     private int[,] _resMatrix;
     private bool _debugMode = true;
@@ -157,12 +161,28 @@ public class NewGameManager : MonoBehaviour
         credits -= betAmount;
     }
 
+    private void Earn()
+    {
+        credits += multiplier * ((WinPatternCombination)_topComb).WinCombination.reward;
+    }
+
     public void ShowResults()
     {
+        Earn();
+
         var highLights = Instantiate(((WinPatternCombination)_topComb).WinPattern.highLights, canvas.transform);
+
+        rewardPanel.multiplier.SetText(multiplier + "X");
+        rewardPanel.amount.SetText(((WinPatternCombination)_topComb).WinCombination.amount.ToString());
+        rewardPanel.credits.SetText((((WinPatternCombination)_topComb).WinCombination.reward * multiplier).ToString());
+        rewardPanel.figure.sprite = slotMatches[((WinPatternCombination)_topComb).WinCombination.slot - 1].graphics;
+
+        rewardPanel.transform.gameObject.SetActive(true);
+
         LeanTween.delayedCall(2f, () =>
         {
             Destroy(highLights);
+            rewardPanel.transform.gameObject.SetActive(false);
             spinBtn.interactable = true;
         });
     }
