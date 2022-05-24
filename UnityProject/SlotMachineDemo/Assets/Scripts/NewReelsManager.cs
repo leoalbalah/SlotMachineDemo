@@ -19,7 +19,8 @@ public class NewReelsManager : MonoBehaviour
     private void Update()
     {
         if (!mustStop) return;
-        if (!reels[^1].isSpinning)
+
+        if (!reels[reels.Length - 1].isSpinning)
         {
             mustStop = false;
             gameManager.ShowResults();
@@ -55,11 +56,13 @@ public class NewReelsManager : MonoBehaviour
     /// </summary>
     private IEnumerator StartSpinEnum()
     {
-        for (var i = 0; i < reels.Length; i++)
+        var wait = new WaitForSeconds(.3f);
+
+        foreach (var reel in reels)
         {
-            reels[i].isSpinning = true;
-            reels[i].speed = Random.Range(minSpeed, maxSpeed);
-            yield return new WaitForSeconds(.5f);
+            reel.isSpinning = true;
+            reel.speed = Random.Range(minSpeed, maxSpeed);
+            yield return wait;
         }
     }
 

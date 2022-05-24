@@ -72,7 +72,9 @@ public class NewGameManager : MonoBehaviour
 
     #endregion
 
-
+    /// <summary>  
+    /// Starts the Spinning Functionality.
+    /// </summary>
     public void Spin()
     {
         // Ensure That the credits are enough for the spin
@@ -106,8 +108,6 @@ public class NewGameManager : MonoBehaviour
         // Starts the spinning and after a small delay the stop reels functions.
         reelsManager.Spin();
         LeanTween.delayedCall(Random.Range(2, 4), () => { reelsManager.Stop(roll); });
-
-        spinBtn.interactable = true;
     }
 
     /// <summary>  
